@@ -1,6 +1,6 @@
 <?php
-	require_once __DIR__."/address-book/vendor/autoload.php";
-	require_once __DIR__."/address-book/src/address_book.php";
+	require_once __DIR__."/../vendor/autoload.php";
+	require_once __DIR__."/../src/address_book.php";
 
 	session_start();
 	if (empty($_SESSION['contact_list'])) {
