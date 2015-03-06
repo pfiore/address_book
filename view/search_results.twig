@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>Search Results!</title>
+</head>
+<body>
+	<h1> Contacts matching your search:</h1>
+	{% if results is empty%}
+		<p>No Contacts Found</p>
+	{% endif %}
+	{% for contact in results %}
+		<ul>
+			<li>{{ contact.getName }}</li>
+			<ul>
+				<li>{{ contact.getPhone }}</li>
+				<li>{{ contact.getAddress }}</li>
+			</ul>
+		</ul>
+	{% endfor %}
+	<p>
+		<a href='/'>View Address Book</a>
+	</p>
+</body>
+</html>

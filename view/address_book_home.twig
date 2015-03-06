@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>Patrick's Address Book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!--     <link rel="stylesheet" href="css/styles.css"> -->
+</head>
+<body>
+	<div class='container'>
+	<h1> Patrick's Address Book</h1>
+	{% if contact_list is not empty %}
+		<h2> Addresses:</h2> 
+			{% for contacts in contact_list %}
+			<ul>
+				<li>{{ contact.getName }}</li>
+			</ul>
+				<ul>
+					<li>{{ contact.getPhone }}</li>
+					<li>{{ contact.getAddress }}</li>
+				</ul>
+		</ul>
+
+		{% endfor %}
+	{% endif %}
+
+	<form action='/create_contact' method='post'>
+		<p>
+			<label for='name'>Name: </label>
+			<input id='name' name='name' type='text'>
+		</p>
+		<p>
+			<label for='phone'>Phone #: </label>
+			<input id='phone' name='phone' type='number'>
+		</p>
+		<p>
+			<label for='address'>Address: </label>
+			<input id='address' name='address' type='text'>
+		</p>
+
+		<p>
+			<button> type='submit' class="btn-success"> Add Contact</button>
+		</p>
+	</form>
+	<form action='/delete_all' method='post'>
+		<button type='submit'>Delete All</button>
+	</form>
+
+	<h1> Find contact by name</h1>
+		<form action='search_results' method='post'>
+			<div class='form-group'>
+				<label for='name_search'>Enter Name:</label>
+			<button type='submit' class='btn-success'>Search</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
