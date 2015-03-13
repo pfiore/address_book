@@ -16,10 +16,10 @@
 		return $app['twig']->render('address_book_home.twig', array('contacts' => Contact::getAll()));
 	});
 
-	$app->post("/create_address", function() use ($app) {
+	$app->post("/create_contact", function() use ($app) {
 		$contact = new Contact($_POST['name'], $_POST['phone'], $_POST['address']);
 		$contact ->save();
-		return $app['twig']->render('create_address.twig', array('newcontact' => $contact));
+		return $app['twig']->render('create_contact.twig', array('newcontact' => $contact));
 	});
 
 	$app->post("/delete_all", function() use ($app) {
@@ -27,15 +27,5 @@
 		return $app['twig']->render('delete_all.twig');
 	});
 
-	$app->post("/search_results", function() use ($app) {
-		$all_contacts = Contact::getAll();
-		$contact_matching_search = array();
-		foreach ($all_contacts as $contact) {
-			if ($contact->searchName($_POST['name_search'])) {
-				array_push($contact_matching_search, $contact);
-			}
-		}
-		return $app['twig']->render('search_results.twig', array('results' => $contact_matching_search));
-	});
 	return $app;
 ?>
